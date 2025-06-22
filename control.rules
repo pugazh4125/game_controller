@@ -1,0 +1,82 @@
+
+(rules PCB control.dsn
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute off)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 1)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 4.2)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 3.1)
+    )
+  )
+  (rule
+    (width 200.0)
+    (clearance 200.0)
+    (clearance 100.0 (type smd_to_turn_gap))
+    (clearance 50.0 (type smd))
+    (clearance 200.0 (type "kicad_default"))
+  )
+  (padstack "Via[0-1]_600:300_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_600:300_um" "Via[0-1]_600:300_um" default
+  )
+  (via 
+    "Via[0-1]_600:300_um-kicad_default" "Via[0-1]_600:300_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_600:300_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_600:300_um-kicad_default"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    GND "Net-(U1-XTAL2)" "Net-(U1-XTAL1)" "Net-(U1-UCAP)" "unconnected-(J1-Shield-Pad6)" +5V "unconnected-(J1-Shield-Pad6)_1" "unconnected-(J1-Shield-Pad6)_2"
+    "Net-(J1-D-)" "unconnected-(J1-Shield-Pad6)_3" "unconnected-(J1-ID-Pad4)" "unconnected-(J1-Shield-Pad6)_4" "unconnected-(J1-Shield-Pad6)_5" "unconnected-(J1-Shield-Pad6)_6" "unconnected-(J1-Shield-Pad6)_7" "Net-(J1-D+)"
+    "Net-(U1-~{RESET})" "Net-(U1-~{HWB}{slash}PE2)" "Net-(U1-PD0)" "Net-(U1-PD1)" "Net-(U1-PD2)" "Net-(U1-PD3)" "Net-(U1-PB0)" "Net-(U1-PB6)"
+    "Net-(U1-PB7)" "Net-(U1-PD4)" "Net-(U1-PF6)" "Net-(U1-PD5)" "Net-(U1-PD7)" "Net-(U1-PC6)" "unconnected-(U1-PE6-Pad1)" "Net-(U1-PB4)"
+    "Net-(U1-PB3)" "Net-(U1-PF4)" "Net-(U1-PD6)" "Net-(U1-PC7)" "Net-(U1-PF1)" "Net-(U1-PF5)" "Net-(U1-PB5)" "Net-(U1-PB1)"
+    "unconnected-(U1-PF7-Pad36)" "Net-(U1-PF0)" "unconnected-(U1-AREF-Pad42)" "Net-(U1-PB2)" "unconnected-(U3-IRQ-Pad8)" +3.3V
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
